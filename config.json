@@ -1,0 +1,17 @@
+{
+    "rpc": "https://mainnet.helius-rpc.com/?api-key=f74ec75c-56ba-49df-b67b-71637bf8d115",
+    "ws": "wss://mainnet.helius-rpc.com/?api-key=f74ec75c-56ba-49df-b67b-71637bf8d115",
+    "delay": 5000,
+    "slippage": 0.15,
+    "minBuy": "0.01",
+    "maxBuy": "0.05",
+    "microBuyAmount": "0.0001",
+    "computeUnit": "100000",
+    "computeLimit": "20000000",
+    "blockEngineUrl": "ny.mainnet.block-engine.jito.wtf",
+    "jitoTipPK": "5PtTMEfCMtPhboCS8yfqhFuSzJ8crU2KDQyUoisSZS8RVb8LTrymyYSare7g1YBvzkUyQG1TAUWyvzJpSKiecZHE",
+    "jitoTipAmount": "0.0001",
+    "sender": "5PtTMEfCMtPhboCS8yfqhFuSzJ8crU2KDQyUoisSZS8RVb8LTrymyYSare7g1YBvzkUyQG1TAUWyvzJpSKiecZHE",
+    "devWallet": "7LxiSx7mx7T8h97o6dsJkBvWb21PC6sFFpELvoH5HLFQ",
+    "useJITO": true
+}
