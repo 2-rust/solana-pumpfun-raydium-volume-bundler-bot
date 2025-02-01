@@ -115,17 +115,6 @@ Transfer Tokens: Transfers all tokens from the sub-wallets to the wallet address
 
 Quit: Quits the application.
 ---
-## BlockEngine URLs
-Choose the BlockEngine URL closest to your location for JITO integration:
+### Connect
 
-AMSTERDAM: amsterdam.mainnet.block-engine.jito.wtf
-FRANKFURT: frankfurt.mainnet.block-engine.jito.wtf
-NEW YORK: ny.mainnet.block-engine.jito.wtf
-TOKYO: tokyo.mainnet.block-engine.jito.wtf
-Additional Information
-JITO Integration: JITO ensures Maximum Extractable Value (MEV) protection by bundling transactions for optimized gas usage and reduced transaction costs.
-MEV Protection: When enabled, JITO minimizes the impact of competing bots and maximizes profits.
----
-Author
-Created by Vladmeer
 Telegram: [Dillon](https://t.me/dillon130)
