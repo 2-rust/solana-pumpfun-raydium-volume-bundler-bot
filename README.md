@@ -66,6 +66,7 @@ The configuration file contains key parameters that define the bot's behavior. H
   "devWallet": "PUBLIC KEY",  // Public key of the deployer wallet to monitor for new launches
   "useJITO": true  // Set to 'true' to use JITO for MEV protection
 }
+```
 ---
 ## Available Modes
 ### 1. Buy Modes
