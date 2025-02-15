@@ -34,36 +34,6 @@ async function walletTracker(minDelay, maxDelay, sellPct) {
 }
 
 async function fetchAccounts(txId, connection, minDelay, maxDelay, sellPct) {
-    const PUMP_PUBLIC_KEY = "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P";
-
-    const tx = await connection.getParsedTransaction(
-        txId,
-        {
-            maxSupportedTransactionVersion: 0,
-            commitment: 'confirmed'
-        }
-    );
-
-    const accounts = tx?.transaction.message.instructions.find(ix => ix.programId.toBase58() === PUMP_PUBLIC_KEY).accounts;
-    if (!accounts || accounts.length === 0) {
-        console.log("No accounts found in the transaction.");
-        return;
-    }
-
-    let mint = accounts[0];
-    let bCurve = accounts[2];
-    let aCurve = accounts[3];
-
-    const ca = mint.toBase58();
-    const bondingCurve = bCurve.toBase58();
-    const associatedCurve = aCurve.toBase58();
-
-    console.log(chalk.greenBright("New Mint detected: ", mint.toBase58()));
-
-    // set a delay to allow the mint to be fully initialized
-    await new Promise(resolve => setTimeout(resolve, 500));
-    console.log(chalk.blueBright("Generating Volume Now..."));
-
     await autoVolume(ca, bondingCurve, associatedCurve, minDelay, maxDelay, sellPct);
 
 }

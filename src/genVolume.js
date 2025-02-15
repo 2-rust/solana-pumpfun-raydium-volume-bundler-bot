@@ -20,72 +20,12 @@ const minBuy = config.minBuy;
 const maxBuy = config.maxBuy;
 const useJITO = config.useJITO;
 const tipPayer = Keypair.fromSecretKey(new Uint8Array(bs58.decode(config.jitoTip)));
-const jitoTipAmount = parseFloat(config.jitoTipAmount) * 1e9; 
+const jitoTipAmount = parseFloat(config.jitoTipAmount) * 1e9;
 const blockEngineURL = config.blockEngineURL;
 
 
 async function autoVolume(ca, bCurve, aCurve, minDelay, maxDelay, sellPct) {
-    const PUMP_PUBLIC_KEY = "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P";
-    const pump = new PublicKey(PUMP_PUBLIC_KEY);
 
-    const connection = new Connection(rpc, {
-        commitment: 'confirmed',
-        wsEndpoint: ws
-    });
-
-    const wallets = await loadWallets();
-    let buyWallets = [];
-    let sellWallets = [];
-
-    // load and map buy amounts from the JSON file
-    let buyAmounts = {};
-    const buyAmountsPath = path.resolve(process.cwd(), 'buyAmounts.json');
-
-    if (fs.existsSync(buyAmountsPath)) {
-        const rawdata = fs.readFileSync(buyAmountsPath, 'utf8');
-        buyAmounts = JSON.parse(rawdata);
-    }
-
-    const walletBuyAmounts = wallets.map((wallet, index) => {
-        const walletKey = `wallet${index + 1}`;
-        let buyAmount;
-
-        if (buyAmounts[walletKey]) {
-            buyAmount = buyAmounts[walletKey];
-        } else {
-            // Generate a random buy amount if not specified in the file
-            buyAmount = Math.random() * (maxBuy - minBuy) + minBuy;
-            buyAmount = parseFloat(buyAmount.toFixed(3)); // Round to 4 decimal places
-        }
-
-        return { wallet, buyAmount };
-    });
-
-    while (true) {
-        while (sellWallets.length < wallets.length) {
-            // Buy for two wallets before selling one
-            for (let i = 0; i < 2; i++) {
-                const walletIndex = buyWallets.length % wallets.length; // Wrap around if needed
-                const { wallet, buyAmount } = walletBuyAmounts[walletIndex];
-                if (!buyWallets.includes(wallet)) {
-                    await buy(connection, wallet, ca, bCurve, aCurve, pump, buyAmount, minDelay, maxDelay, useJITO);
-                    buyWallets.push(wallet);
-                }
-            }
-
-            // Sell one wallet
-            const sellIndex = sellWallets.length % wallets.length; // Wrap around if needed
-            const sellWallet = wallets[sellIndex];
-            if (!sellWallets.includes(sellWallet)) {
-                await sell(connection, sellWallet, ca, bCurve, aCurve, pump, minDelay, maxDelay, sellPct, useJITO);
-                sellWallets.push(sellWallet);
-            }
-        }
-
-        // Reset buy and sell wallets for the next iteration
-        buyWallets = [];
-        sellWallets = [];
-    }
 }
 async function buy(connection, wallet, ca, bCurve, aCurve, pump, buyAmount, minDelay, maxDelay, useJITO) {
     const owner = new PublicKey(wallet.pubKey);

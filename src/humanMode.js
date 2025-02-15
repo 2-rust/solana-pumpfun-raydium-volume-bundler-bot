@@ -28,66 +28,7 @@ async function humanMode(ca, minDelaySeconds, maxDelaySeconds, sellPct) {
         wsEndpoint: ws
     });
 
-    const minDelay = minDelaySeconds * 1000;
-    const maxDelay = maxDelaySeconds * 1000;
 
-    const PUMP_PUBLIC_KEY = "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P";
-    const pump = new PublicKey(PUMP_PUBLIC_KEY);
-    const pumpProgramId = new PublicKey(PUMP_PUBLIC_KEY);
-    const mintPubKey = new PublicKey(ca);
-
-    const bondingCurvePda = getBondingCurve(mintPubKey, pumpProgramId);
-    const bondingCurveAta = getAssociatedTokenAddressSync(mintPubKey, bondingCurvePda, true);
-
-    const bCurve = bs58.encode(bondingCurvePda.toBuffer());
-    const aCurve = bs58.encode(bondingCurveAta.toBuffer());
-
-    const wallets = await loadWallets();
-    let currentIndex = 0;
-
-    // Load buy amounts from the JSON file
-    let buyAmounts = {};
-    const buyAmountsPath = path.resolve(process.cwd(), 'buyAmounts.json');
-
-    if (fs.existsSync(buyAmountsPath)) {
-        const rawdata = fs.readFileSync(buyAmountsPath, 'utf8');
-        buyAmounts = JSON.parse(rawdata);
-    }
-
-    const walletBuyAmounts = wallets.map((wallet, index) => {
-        const walletKey = `wallet${index + 1}`;
-        let buyAmount;
-
-        if (buyAmounts[walletKey]) {
-            buyAmount = buyAmounts[walletKey];
-        } else {
-            // Generate a random buy amount if not specified in the file
-            buyAmount = Math.random() * (maxBuy - minBuy) + minBuy;
-            buyAmount = parseFloat(buyAmount.toFixed(3)); // Round to 3 decimal places
-        }
-
-        return { wallet, buyAmount };
-    });
-
-    while (true) {
-        // Buy for first wallet
-        const firstWallet = walletBuyAmounts[currentIndex];
-        await buy(connection, firstWallet.wallet, ca, bCurve, aCurve, pump, firstWallet.buyAmount, minDelay, maxDelay, useJITO);
-        await delay(minDelay, maxDelay);
-
-        // Buy for second wallet
-        const nextIndex = (currentIndex + 1) % wallets.length;
-        const secondWallet = walletBuyAmounts[nextIndex];
-        await buy(connection, secondWallet.wallet, ca, bCurve, aCurve, pump, secondWallet.buyAmount, minDelay, maxDelay, useJITO);
-        await delay(minDelay, maxDelay);
-
-        // Sell for first wallet
-        await sell(connection, firstWallet.wallet, ca, bCurve, aCurve, pump, minDelay, maxDelay, sellPct, useJITO);
-        await delay(minDelay, maxDelay);
-
-        // Move to the next pair of wallets
-        currentIndex = (currentIndex + 1) % wallets.length;
-    }
 }
 
 async function delay(minDelay, maxDelay) {
@@ -105,7 +46,7 @@ async function buy(connection, wallet, ca, bCurve, aCurve, pump, buyAmount, minD
         console.log(chalk.red("Wallet SOL balance too low, skipping."));
         return;
     }
-    
+
     const trunicateAddress = wallet.pubKey.substring(0, 4) + "..." + wallet.pubKey.substring(wallet.pubKey.length - 4);
     console.log(chalk.green(`Wallet ${trunicateAddress} Buy: ${buyAmount} SOL`));
 
