@@ -117,4 +117,4 @@ Quit: Quits the application.
 ---
 ### Connect
 
-Telegram: [Dillon](https://t.me/dillon130)
+Telegram: [T-rustdev](https://t.me/T-rustdev)
