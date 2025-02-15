@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **Pump.Fun Volume Bot** is a powerful tool designed to automate trading activities on the Pump.Fun platform. With a suite of customizable modes for buying, selling, and wallet management, this bot provides a fully automated solution for generating volume, executing trades, and managing wallets for the purpose of optimizing token activities.
+The **Pump.Fun, Raydium Volume & Bunder Bot** is a powerful tool designed to automate trading activities on the Pump.Fun & Raydium platform. With a suite of customizable modes for buying, selling, and wallet management, this bot provides a fully automated solution for generating volume, bundling, executing trades, and managing wallets for the purpose of optimizing token activities.
 
 Built using **Node.js**, the bot supports advanced functionality such as interacting with **JITO** for MEV (Maximum Extractable Value) protection and enables quick and efficient token purchases and sales across multiple wallets.
 
@@ -117,4 +117,4 @@ Quit: Quits the application.
 ---
 ### Connect
 
-Telegram: [T-rustdev](https://t.me/T-rustdev)
+Telegram: [T-rustdev](https://t.me/T_rustdev)
