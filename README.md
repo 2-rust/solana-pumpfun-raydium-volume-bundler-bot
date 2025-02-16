@@ -38,8 +38,9 @@ Ensure that **Node.js** is installed on your system. If not, download and instal
 Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/pump-fun-volume-bot.git
-cd pump-fun-volume-bot
+git clone https://github.com/T-rustdev/pump.fun-raydium-volume-bundler-total
+cd pump.fun-raydium-volume-bundler-total
+```
 ## Configuration
 
 The bot is highly configurable, allowing you to modify various settings in the `config.json` file. Below is a detailed guide for configuring the bot to suit your needs.
@@ -115,6 +116,6 @@ Transfer Tokens: Transfers all tokens from the sub-wallets to the wallet address
 
 Quit: Quits the application.
 ---
-### Connect
+### 📩 Connect
 
 Telegram: [T-rustdev](https://t.me/T_rustdev)
