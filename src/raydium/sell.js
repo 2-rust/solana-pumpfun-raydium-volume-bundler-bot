@@ -57,27 +57,6 @@ async function getTokenActBal(wallet, token) {
 }
 
 async function chooseWallet(token) {
-    const wallets = await loadWallets();
-    const mint = new PublicKey(token);
-
-    const walletOptions = await Promise.all(wallets.map(async (wallet, index) => {
-        const balance = await getTokenActBal(wallet, mint);
-        return {
-            name: `${index}: ${wallet.pubKey} - ${(balance / 1e6).toFixed(2)}`,
-            value: { index, ...wallet }
-        };
-    }));
-
-    const questions = [
-        {
-            type: 'list',
-            name: 'wallet',
-            message: 'Choose a wallet (pubKey - token balance):',
-            choices: walletOptions
-        }
-    ];
-
-    return inquirer.prompt(questions).then(answers => answers.wallet);
 }
 
 
