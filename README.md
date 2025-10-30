@@ -118,4 +118,4 @@ Quit: Quits the application.
 ---
 ### 📩 Connect
 
-Telegram: [T-rustdev](https://t.me/T_rustdev)
+Telegram: [rust_devv](https://t.me/rust_devv)
