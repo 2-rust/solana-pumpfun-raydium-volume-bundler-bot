@@ -36,7 +36,7 @@ Ensure that **Node.js** is installed on your system. If not, download and instal
 ### Step 2: Clone or Navigate to the Repository
 
 ```bash
-cd nadfun-bundler-bot
+cd nadfun-bundler
 ```
 
 ### Step 3: Install Dependencies
