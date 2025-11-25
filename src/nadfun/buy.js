@@ -11,23 +11,7 @@ import loadConfig from '../loadConfig.js';
  * @returns {Promise<Object>} Quote with amount out and router address
  */
 export async function getBuyQuote(provider, tokenAddress, monAmount) {
-    const config = await loadConfig();
-    const router = new ethers.Contract(CONTRACTS.BONDING_CURVE_ROUTER, BONDING_CURVE_ROUTER_ABI, provider);
     
-    // Convert MON amount to wei if string
-    const amountIn = typeof monAmount === 'string' ? parseMon(monAmount) : monAmount;
-    
-    try {
-        const result = await router.getAmountOut(tokenAddress, amountIn, true);
-        return {
-            amount: result.amount,
-            router: result.router || CONTRACTS.BONDING_CURVE_ROUTER,
-            formattedAmount: formatMon(result.amount)
-        };
-    } catch (error) {
-        console.error('Error getting buy quote:', error);
-        throw error;
-    }
 }
 
 /**

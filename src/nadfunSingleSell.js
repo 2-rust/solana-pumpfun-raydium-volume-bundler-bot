@@ -8,35 +8,7 @@ import { sellToken, getTokenBalance } from './nadfun/sell.js';
  * Single wallet sell - Sell tokens from a specific wallet
  */
 export default async function singleSell(tokenAddress, rl) {
-    const config = await loadConfig();
-    const wallets = await loadWallets();
     
-    if (wallets.length === 0) {
-        console.error(chalk.red('No wallets found! Please generate wallets first.'));
-        return;
-    }
-    
-    const provider = new ethers.JsonRpcProvider(config.rpcURL);
-    
-    // List wallets with balances
-    console.log(chalk.blue('\nAvailable wallets:\n'));
-    const walletBalances = [];
-    
-    for (let i = 0; i < wallets.length; i++) {
-        try {
-            const balance = await getTokenBalance(provider, tokenAddress, wallets[i].address);
-            walletBalances.push({
-                index: i,
-                address: wallets[i].address,
-                balance: balance
-            });
-            
-            console.log(chalk.cyan(`${i + 1}. ${wallets[i].address}`));
-            console.log(`   Balance: ${chalk.green(balance.formatted)} tokens\n`);
-        } catch (error) {
-            console.error(chalk.red(`Error checking wallet ${i + 1}: ${error.message}`));
-        }
-    }
     
     // Prompt for wallet selection
     return new Promise((resolve) => {

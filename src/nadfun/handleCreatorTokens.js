@@ -16,41 +16,7 @@ import { parseMon } from './constants.js';
  * @returns {Promise<Object>} Result of the operation
  */
 export async function buyFromCreator(wallet, tokenAddress, creatorAddress, options = {}) {
-    const {
-        maxBuyAmount = parseMon("1.0"), // Maximum MON to spend
-        targetPercentageReduction = 10, // Reduce creator's percentage by this amount
-        slippagePercent = 5
-    } = options;
     
-    console.log(chalk.blue(`Buying tokens from creator ${creatorAddress} to reduce their percentage...`));
-    
-    try {
-        // For now, we'll execute a buy transaction which will reduce the creator's percentage
-        // In the future, if nad.fun provides a direct way to buy from creators, we can use that
-        
-        // Get quote for buying
-        const quote = await getBuyQuote(wallet.provider, tokenAddress, maxBuyAmount);
-        
-        console.log(chalk.green(`Quote: ${quote.formattedAmount} tokens for ${maxBuyAmount / parseMon("1.0")} MON`));
-        
-        // Execute buy
-        const txHash = await buyToken(wallet, tokenAddress, maxBuyAmount, slippagePercent);
-        
-        console.log(chalk.green(`✓ Bought tokens from bonding curve: ${txHash}`));
-        
-        return {
-            success: true,
-            txHash: txHash,
-            tokensReceived: quote.formattedAmount
-        };
-        
-    } catch (error) {
-        console.error(chalk.red(`Error buying from creator: ${error.message}`));
-        return {
-            success: false,
-            error: error.message
-        };
-    }
 }
 
 /**

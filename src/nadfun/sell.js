@@ -11,34 +11,7 @@ import loadConfig from '../loadConfig.js';
  * @returns {Promise<Object>} Quote with amount out and router address
  */
 export async function getSellQuote(provider, tokenAddress, tokenAmount) {
-    const config = await loadConfig();
-    const router = new ethers.Contract(CONTRACTS.BONDING_CURVE_ROUTER, BONDING_CURVE_ROUTER_ABI, provider);
     
-    // Get token decimals
-    const tokenContract = new ethers.Contract(tokenAddress, ERC20_ABI, provider);
-    let decimals = 18;
-    try {
-        decimals = await tokenContract.decimals();
-    } catch (error) {
-        console.warn('Could not fetch token decimals, assuming 18');
-    }
-    
-    // Convert token amount to wei if string
-    const amountIn = typeof tokenAmount === 'string' 
-        ? ethers.parseUnits(tokenAmount, decimals) 
-        : tokenAmount;
-    
-    try {
-        const result = await router.getAmountOut(tokenAddress, amountIn, false);
-        return {
-            amount: result.amount,
-            router: result.router || CONTRACTS.BONDING_CURVE_ROUTER,
-            formattedAmount: formatMon(result.amount)
-        };
-    } catch (error) {
-        console.error('Error getting sell quote:', error);
-        throw error;
-    }
 }
 
 /**
