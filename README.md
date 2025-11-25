@@ -10,89 +10,53 @@ Built using **Node.js** and **ethers.js**, the bot supports advanced functionali
 ## Architecture Diagram
 
 ```mermaid
-graph TB
-    subgraph "Bot Core"
-        A[npm start] --> B[Interactive Menu]
-        B --> C[Mode Selection]
-    end
+graph TD
+    A[npm start] --> B[Interactive Menu]
+    B --> C[Mode Selection]
     
-    subgraph "Buy Modes"
-        C --> D1[Bundle Buy]
-        C --> D2[Auto Volume]
-        C --> D3[Human Mode]
-        D1 --> D1A[Generate Buy TXs<br/>Random Amounts]
-        D2 --> D2A[Monitor Dev Wallet<br/>Auto Trade on Launch]
-        D3 --> D3A[Buy-Buy-Sell Cycle<br/>Randomized Delays]
-    end
+    C --> D[Buy Modes]
+    C --> E[Sell Modes]
+    C --> F[Wallet Management]
+    C --> G[Transfer Modes]
     
-    subgraph "Sell Modes"
-        C --> E1[Sell All Bundle]
-        C --> E2[Single Wallet Sell]
-        C --> E3[Cleanup Mode]
-        E1 --> E1A["Sell % from All Wallets"]
-        E2 --> E2A[Sell 100% from One Wallet]
-        E3 --> E3A[Sell All Tokens]
-    end
+    D --> D1[Bundle Buy]
+    D --> D2[Auto Volume]
+    D --> D3[Human Mode]
     
-    subgraph "Wallet Management"
-        C --> F1[Gen Wallets]
-        C --> F2[Check Balances]
-        C --> F3[Set Buy Amounts]
-        F1 --> F1A["Create EVM Wallets<br/>Store in keypairs folder"]
-        F2 --> F2A[Check MON & Token Balances]
-    end
+    E --> E1[Sell All Bundle]
+    E --> E2[Single Wallet Sell]
+    E --> E3[Cleanup Mode]
     
-    subgraph "Transfer Modes"
-        C --> G1[Send MON to Wallets]
-        C --> G2[Return MON to Main]
-        G1 --> G1A[Distribute from Main Wallet]
-        G2 --> G2A[Consolidate to Main<br/>Keep Gas Reserve]
-    end
+    F --> F1[Gen Wallets]
+    F --> F2[Check Balances]
+    F --> F3[Set Buy Amounts]
     
-    subgraph "Transaction Processing"
-        D1A --> H[Transaction Bundler]
-        D2A --> H
-        D3A --> H
-        E1A --> H
-        E2A --> H
-        E3A --> H
-        G1A --> H
-        G2A --> H
-        H --> I[Nonce Management]
-        I --> J[Sequential Execution]
-    end
+    G --> G1[Send MON to Wallets]
+    G --> G2[Return MON to Main]
     
-    subgraph "Nad.fun Contracts"
-        J --> K1[Bonding Curve Router]
-        J --> K2[DEX Router]
-        J --> K3[WMON Contract]
-        K1 --> L[Monad Network]
-        K2 --> L
-        K3 --> L
-    end
+    D1 --> H[Transaction Bundler]
+    D2 --> H
+    D3 --> H
+    E1 --> H
+    E2 --> H
+    E3 --> H
+    G1 --> H
+    G2 --> H
     
-    subgraph "Configuration"
-        M[config.json] --> N[RPC Settings]
-        M --> O[Trading Parameters]
-        M --> P[Contract Addresses]
-        N --> B
-        O --> H
-        P --> K1
-        P --> K2
-        P --> K3
-    end
+    H --> I[Nonce Management]
+    I --> J[Sequential Execution]
+    J --> K[Monad Network]
+    K --> L[Nad.fun Contracts]
     
-    subgraph "Wallet Storage"
-        F1A --> Q["keypairs folder"]
-        F1A --> R["wallets.txt"]
-        Q --> B
-        R --> B
-    end
+    M[config.json] --> B
+    M --> H
+    
+    N[Wallets Storage] --> B
     
     style A fill:#e1f5ff
     style B fill:#fff4e1
     style H fill:#ffe1f5
-    style L fill:#e1ffe1
+    style K fill:#e1ffe1
     style M fill:#f5e1ff
 ```
 
