@@ -36,7 +36,7 @@ Ensure that **Node.js** is installed on your system. If not, download and instal
 ### Step 2: Clone or Navigate to the Repository
 
 ```bash
-cd solana-pumpfun-raydium-volume-bundler-bot
+cd nadfun-bundler-bot
 ```
 
 ### Step 3: Install Dependencies
