@@ -3,3 +3,19 @@ node_modules
 
 # environmental
 .env
+
+# wallets and keys
+wallets.txt
+keypairs/
+keypairBackup/
+walletBackup/
+*.json
+!package.json
+!package-lock.json
+
+# config with sensitive data
+config.json
+
+# logs
+logs.txt
+*.log

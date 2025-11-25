@@ -1,17 +1,23 @@
 {
-    "rpc": "",
-    "ws": "",
-    "delay": ,
-    "slippage": ,
-    "minBuy": "",
-    "maxBuy": "",
-    "microBuyAmount": "0.0001",
-    "computeUnit": "100000",
-    "computeLimit": "20000000",
-    "blockEngineUrl": "",
-    "jitoTipPK": "",
-    "jitoTipAmount": "",
-    "sender": "5PtTMEfCMtPhboCS8yfqhFuSzJ8crU2KDQyUoisSZS8RVb8LTrymyYSare7g1YBvzkUyQG1TAUWyvzJpSKiecZHE",
+    "rpc": "https://monad-testnet.rpc.url",
+    "ws": "wss://monad-testnet.ws.url",
+    "chainId": 10143,
+    "delay": 5000,
+    "slippage": 0.05,
+    "minBuy": 0.0001,
+    "maxBuy": 0.1,
+    "microBuyAmount": 0.0001,
+    "gasPrice": null,
+    "gasLimit": 300000,
+    "sender": "YOUR_PRIVATE_KEY_HERE",
     "devWallet": "",
-    "useJITO": 
+    "useBundle": true,
+    "contracts": {
+        "bondingCurveRouter": "0x6F6B8F1a20703309951a5127c45B49b1CD981A22",
+        "bondingCurve": "0xA7283d07812a02AFB7C09B60f8896bCEA3F90aCE",
+        "dexRouter": "0x0B79d71AE99528D1dB24A4148b5f4F865cc2b137",
+        "dexFactory": "0x6B5F564339DbAD6b780249827f2198a841FEB7F3",
+        "wmon": "0x3bd359C1119dA7Da1D913D1C4D2B7c461115433A",
+        "lens": "0x7e78A8DE94f21804F7a17F4E8BF9EC2c872187ea"
+    }
 }
