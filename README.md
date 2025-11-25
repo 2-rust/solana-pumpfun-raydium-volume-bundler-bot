@@ -29,7 +29,7 @@ graph TB
         C --> E1[Sell All Bundle]
         C --> E2[Single Wallet Sell]
         C --> E3[Cleanup Mode]
-        E1 --> E1A[Sell % from All Wallets]
+        E1 --> E1A["Sell % from All Wallets"]
         E2 --> E2A[Sell 100% from One Wallet]
         E3 --> E3A[Sell All Tokens]
     end
@@ -38,7 +38,7 @@ graph TB
         C --> F1[Gen Wallets]
         C --> F2[Check Balances]
         C --> F3[Set Buy Amounts]
-        F1 --> F1A[Create EVM Wallets<br/>Store in /keypairs]
+        F1 --> F1A["Create EVM Wallets<br/>Store in keypairs folder"]
         F2 --> F2A[Check MON & Token Balances]
     end
     
@@ -83,8 +83,8 @@ graph TB
     end
     
     subgraph "Wallet Storage"
-        F1A --> Q[/keypairs folder]
-        F1A --> R[wallets.txt]
+        F1A --> Q["keypairs folder"]
+        F1A --> R["wallets.txt"]
         Q --> B
         R --> B
     end
