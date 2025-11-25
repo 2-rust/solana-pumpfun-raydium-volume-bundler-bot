@@ -20,6 +20,7 @@ async function loadConfig() {
             useBundle: config.useBundle !== false, // Use transaction bundling (default true)
             gasPrice: config.gasPrice, // Optional: gas price in gwei
             gasLimit: config.gasLimit || 300000, // Default gas limit
+            maxWalletsPerBundle: config.maxWalletsPerBundle || null, // Max wallets per bundle (null = unlimited)
             // Nad.fun contract addresses
             contracts: {
                 bondingCurveRouter: config.contracts?.bondingCurveRouter || "0x6F6B8F1a20703309951a5127c45B49b1CD981A22",

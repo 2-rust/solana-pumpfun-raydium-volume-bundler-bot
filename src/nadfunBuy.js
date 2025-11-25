@@ -33,12 +33,20 @@ export default async function nadfunBuy(tokenAddress, delayMs = 5000) {
     
     console.log(chalk.green(`Token is listed! Generating volume with ${wallets.length} wallets...`));
     
+    // Limit bundle size (default: unlimited, can be configured)
+    const maxWalletsPerBundle = config.maxWalletsPerBundle || wallets.length;
+    const walletsToUse = wallets.slice(0, maxWalletsPerBundle);
+    
+    if (wallets.length > maxWalletsPerBundle) {
+        console.log(chalk.yellow(`Limiting bundle to ${maxWalletsPerBundle} wallets (you have ${wallets.length} total)`));
+    }
+    
     // Prepare transactions
     const transactions = [];
     let nonceOffset = 0;
     
-    for (let i = 0; i < wallets.length; i++) {
-        const wallet = wallets[i].wallet.connect(provider);
+    for (let i = 0; i < walletsToUse.length; i++) {
+        const wallet = walletsToUse[i].wallet.connect(provider);
         
         // Get current nonce for this wallet
         const currentNonce = await provider.getTransactionCount(wallet.address, 'pending');

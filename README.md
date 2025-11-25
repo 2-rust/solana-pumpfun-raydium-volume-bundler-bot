@@ -65,6 +65,7 @@ The configuration file contains key parameters that define the bot's behavior. H
     "microBuyAmount": 0.0001,                 // Small amount for micro buys
     "gasPrice": null,                         // Gas price in gwei (null = auto)
     "gasLimit": 300000,                       // Gas limit per transaction
+    "maxWalletsPerBundle": null,              // Max wallets per bundle (null = unlimited)
     "sender": "YOUR_PRIVATE_KEY_HERE",        // Private key of main wallet
     "devWallet": "",                          // Address to monitor for new launches
     "useBundle": true,                        // Use transaction bundling
@@ -90,7 +91,9 @@ The configuration file contains key parameters that define the bot's behavior. H
 ### 1. Buy Modes
 
 #### Bundle Buy (Nad.fun)
-Generates volume by bundling buy transactions across multiple wallets. Enter the token address (CA) and delay between transactions. The bot will create buy transactions for all wallets with randomized amounts between minBuy and maxBuy.
+Generates volume by bundling buy transactions across multiple wallets. Enter the token address (CA) and delay between transactions. The bot will create buy transactions for wallets with randomized amounts between minBuy and maxBuy.
+
+**Bundle Size**: By default, processes ALL wallets. Set `maxWalletsPerBundle` in config.json to limit (recommended: 10-50 wallets). See `BUNDLE_LIMITS.md` for details.
 
 #### Auto Volume
 Monitors the dev wallet address (configured in config.json) and automatically executes trades when a new token is launched. This mode performs a Buy-Buy-Sell cycle until all wallets have completed their actions.
