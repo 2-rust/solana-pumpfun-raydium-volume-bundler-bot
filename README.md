@@ -267,6 +267,10 @@ This bot is for educational and research purposes. Trading cryptocurrencies invo
 
 For issues and questions, please check the codebase or create an issue in the repository.
 
+## Connect
+ [Telegram](https://t.me/rust_devv)
+ [X](https://x.com/t_rustdev_)
+
 ---
 
 **Note**: This is an updated version converted from the Solana pump.fun bundler to work with Nad.fun on Monad network. Some features from the original version may be simplified or removed for EVM compatibility.
